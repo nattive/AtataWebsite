@@ -3,34 +3,35 @@
 @section('content')
 <div class="container-fluid">
    <!-- NAVIGATION -->
-    <div id="navigation">
-        <!-- container -->
-        <!-- <li class="nav-toggle">
-                <button class="d-md-none av-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
-            </li> -->
-        <div class="container">
-            <div id="responsive-nav">
-                <!-- menu nav -->
-                <div class="menu-nav">
-                    <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
-                    <ul class="menu-list">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Categories</a></li>
-                        <li><a href="mobileView.html">Mobile</a></li>
-                        <li><a href="#">Our News</a></li>
-                        <li><a href="#">Request Quotation</a></li>
-                    </ul>
+   <!-- /NAVIGATION -->
+   <div class="container">
+       <div class="section">
+                <div id="navigation">
+                    <!-- container -->
+                    <!-- <li class="nav-toggle">
+                            <button class="d-md-none av-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
+                        </li> -->
+                    <div class="container">
+                        <div id="responsive-nav">
+                            <!-- menu nav -->
+                            <div class="menu-nav">
+                                <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
+                                <ul class="menu-list">
+                                    <li><a href="#">Home</a></li>
+                                    <li><a href="#">Categories</a></li>
+                                    <li><a href="mobileView.html">Mobile</a></li>
+                                    <li><a href="#">Our News</a></li>
+                                    <li><a href="#">Request Quotation</a></li>
+                                </ul>
+                            </div>
+                            <!-- menu nav -->
+                        </div>
+                    </div>
+                    <!-- /container -->
                 </div>
-                <!-- menu nav -->
-            </div>
-        </div>
-        <!-- /container -->
-    </div>
-    <div class="nav-toggle">
-        <button class="d-md-none av-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
-    </div>
-    <!-- /NAVIGATION -->
-    
+                <div class="nav-toggle">
+                    <button class="d-md-none av-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
+                </div>
     <!-- banner -->
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators-->
@@ -40,21 +41,21 @@
             <li data-target="#myCarousel" data-slide-to="2" class=""></li>
         </ol>
         <div class="carousel-inner" role="listbox">
-            <div class="item active">
+            <div class="item banner active">
                 <div class="container">
                     <div class="carousel-caption">
     
                     </div>
                 </div>
             </div>
-            <div class="item item2">
+            <div class="item banner2">
                 <div class="container">
                     <div class="carousel-caption">
     
                     </div>
                 </div>
             </div>
-            <div class="item item3">
+            <div class="item banner3">
                 <div class="container">
                     <div class="carousel-caption">
     
@@ -70,6 +71,9 @@
             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
+    </div>
+
+        </div>
     </div>
     <!-- //banner -->
     

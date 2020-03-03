@@ -11,20 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-
-
-
-
-Route::group(['prefix' => 'supplier'], function () {
-    
-    Route::get('/admin', 'supplierAdminNavigator@dashboard')->name('supplier.dashboard');
-    Route::get('/admin/product/manage', 'supplierAdminNavigator@manageProduct')->name('supplier.manageProduct');
-    Route::get('/admin/product/add', 'supplierAdminNavigator@addProduct')->name('supplier.addProduct');
-});
-           
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/', 'sellerNavigation@index');
+Route::get('/{any}', 'sellerNavigation@index')->where('any', '.*');
+// Route::get('auth', 'AuthController@authpage');
+// Route::get('Seller/register/{id}', 'sellerNavigation@register');
+// Route::get('product/add', 'sellerNavigation@addProduct')->name('supplier.addProduct');
+// Route::get('product/manage', 'sellerNavigation@manageProduct')->name('supplier.manageProduct');
+// Route::get('/product', function () {
+//     return vieapow('product');
+// });

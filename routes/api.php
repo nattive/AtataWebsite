@@ -13,6 +13,16 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::get('products/', 'ProductController@index')->name('product.all');
+Route::get('product/{id}', 'ProductController@show')->name('product.show');
+Route::post('seller/register', 'sellerController@create')->name('seller.create');
+
+Route::group(['prefix' => 'auth'], function ($router) {
+Route::post('register', 'AuthController@register');
+Route::post('login', 'AuthController@login');
+Route::post('logout', 'AuthController@logout');
+Route::post('refresh', 'AuthController@refresh');
+Route::post('me', 'AuthController@me');
 });
+    // Route::get('product/{Supplier_id}/{id}', 'ProductController@index')->name('product.bySupplier');
