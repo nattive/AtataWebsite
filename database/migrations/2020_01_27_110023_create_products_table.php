@@ -21,17 +21,30 @@ class CreateProductsTable extends Migration
             $table->integer('productBrand_id')->default(1);
             $table->string('productPrice');
             $table->string('productSalePrice')->nullable();
-            $table->longText('prodSpecification')->nullable();
-            $table->longText('prodManufacturer')->nullable();
+            $table->longText('ProductSpecification')->nullable();
+            $table->longText('ProductManufacturerInfo')->nullable();
+            $table->longText('ProductWarrantyInfo')->nullable();
+            $table->longText('ProductUserManual')->nullable();
             $table->longText('productDescription');
-            $table->string('prodcolor')->nullable();
-            $table->string('images');
+            $table->string('productColour')->nullable();
+            $table->string('images')->nullable();
             $table->integer('category_id')->default(1);
-            $table->integer('supplier_id')->default(1);
+            $table->integer('hasSecurePay')->default(false);
+            $table->integer('isInsured')->default(false);
+            $table->integer('hasLogistics')->default(false);
+            $table->integer('seller_id');
+            $table->string('order_count');
             $table->softDeletes();
             $table->timestamps();
         });
     }
+
+
+
+
+
+
+
 
     /**
      * Reverse the migrations.

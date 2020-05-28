@@ -6,6 +6,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\seller;
+use App\Billing;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -16,7 +18,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','address','phonenumber','phonenumber_isVerified','location','orders','billing_id','role','seller_id',
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -34,6 +36,15 @@ class User extends Authenticatable implements JWTSubject
 
     public function getJWTCustomClaims()
     {
+        if ($this->role === 'seller') {
+            $seller = seller::where('id',$this-> seller_id)->first();
+            return [
+            'id' => $this -> id,
+            'role' => $this-> role,
+            'seller_id' => $this-> seller_id,
+            'sellerData' => json_encode($seller)
+        ];
+        }
         return [
             'id' => $this -> id,
             'role' => $this-> role,
@@ -45,4 +56,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsTo(seller::class);
     }
+    public function billing()
+    {
+        return $this->hasMany(Billing::class);
+    }
+    
 }

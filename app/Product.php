@@ -18,10 +18,15 @@ class Product extends Model
         'prodcolor',
         'images',
         'category_id',
-        'supplier_id',
+        'seller_id',
     ];
 
     protected $cast = [
         'images' => 'array'
     ];
+
+      public function seller()
+    {
+        return $this->belongsTo('App\seller');
+    }
 }

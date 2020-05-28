@@ -31,6 +31,10 @@ class seller extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->hasOne('App\User');
+    }
+
+    public function products(){
+        return $this->hasMany('App\Product');
     }
 }

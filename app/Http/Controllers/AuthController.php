@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\sellerResource;
+use App\seller;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Tymon\JWTAuth\JWTAuth;
 
 class AuthController extends Controller
 {
@@ -22,16 +25,16 @@ class AuthController extends Controller
         ]);
         if ($v->fails()) {
             return response()->json([
-                'status' => 'error',
+                'status' => 422,
                 'errors' => $v->errors()
-            ], 422);
+            ], 200);
         }
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->save();
-        return response()->json(['status' => 'success'], 200);
+        return response()->json(['status' => 200, 'user' => $user], 200);
     }
     public function login()
     {
@@ -73,11 +76,15 @@ class AuthController extends Controller
             'user' => $this->guard()->user(),
             'role' => $this->guard()->user()->role,
             'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 60
+            'expires_in' => auth('api')->factory()->getTTL() * 360000
         ]);
     }
     public function guard()
     {
         return Auth::Guard('api');
     }
+    public function getCustomTokens()
+    {
+        return JWTAuth::getPayload();
+    } 
 }

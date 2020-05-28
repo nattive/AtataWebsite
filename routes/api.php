@@ -14,15 +14,20 @@ use Illuminate\Http\Request;
 */
 
 
+
 Route::get('products/', 'ProductController@index')->name('product.all');
+Route::post('products/create', 'ProductController@create');
 Route::get('product/{id}', 'ProductController@show')->name('product.show');
 Route::post('seller/register', 'sellerController@create')->name('seller.create');
+Route::GET('seller/profile/{id}', 'sellerController@show')->name('seller.show');
+Route::GET('user/all', 'UserController@index');
 
 Route::group(['prefix' => 'auth'], function ($router) {
 Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
 Route::post('logout', 'AuthController@logout');
 Route::post('refresh', 'AuthController@refresh');
-Route::post('me', 'AuthController@me');
+Route::GET('getToken', 'AuthController@getCustomTokens');
+Route::GET('seller/profile', 'AuthController@fetchSeller');
 });
-    // Route::get('product/{Supplier_id}/{id}', 'ProductController@index')->name('product.bySupplier');
+    // Route::get('product/{Supplier_id}/{id}', 'ProductController@index')->name('product.bySupplier');s

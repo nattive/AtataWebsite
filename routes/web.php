@@ -12,7 +12,7 @@
 */
 
 // Route::get('/', 'sellerNavigation@index');
-Route::get('/{any}', 'sellerNavigation@index')->where('any', '.*');
+Route::get('/{any}', 'AdminController@index')->where('any', '.*');
 // Route::get('auth', 'AuthController@authpage');
 // Route::get('Seller/register/{id}', 'sellerNavigation@register');
 // Route::get('product/add', 'sellerNavigation@addProduct')->name('supplier.addProduct');

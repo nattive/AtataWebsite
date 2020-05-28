@@ -20,11 +20,19 @@ import VeeValidate from 'vee-validate'
 import VueLazyload from 'vue-lazyload'
 import SweetModal from 'sweet-modal-vue/src/plugin.js'
 import { Form, HasError, AlertError } from 'vform'
-import router from './router'
-import storeData from './store.js'
+import router from '../../public/router'
+import storeData from '../../public/store.js'
 import VueJWT from 'vuejs-jwt'
+import { DropdownPlugin } from 'bootstrap-vue'
+import { NavbarPlugin } from 'bootstrap-vue'
+// import { BootstrapVue, IconsPlugin } from 'bootstrap-vue' 
+// import 'bootstrap/dist/css/bootstrap.css'
+// import 'bootstrap-vue/dist/bootstrap-vue.css'
+// import './custom.scss'
 
 
+Vue.use(NavbarPlugin)
+Vue.use(DropdownPlugin)
 Vue.use(VueJWT)
 Vue.use(Vuex);
 Vue.use(VueAxios, axios)
@@ -39,7 +47,8 @@ axios.defaults.baseURL = `http://atatawebsite.test/api`
 Vue.use(VueLazyload)
 Vue.use(SweetModal)
 Vue.use(VueRouter)
-
+    // Vue.use(BootstrapVue)
+    // Vue.use(IconsPlugin)
 
 
 // const routes = [
@@ -75,7 +84,7 @@ Vue.use(VueRouter)
 
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
-Vue.component('App', require('./components/App.vue').default);
+Vue.component('App', require('./components/index.vue').default);
 Vue.component(
     'passport-clients',
     require('./components/passport/Clients.vue').default);

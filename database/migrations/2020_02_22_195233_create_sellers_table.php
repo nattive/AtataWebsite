@@ -24,6 +24,10 @@ class CreateSellersTable extends Migration
             $table->string('Country');
             $table->string('TIN')->nullable();
             $table->string('PersonInCharge')->nullable();
+            $table->string('Phone_number_PIC')->nullable();
+            $table->string('Phone_number')->nullable();
+            $table->string('email')->nullable();
+            $table->string('website')->nullable();
             $table->string('BusinessRegistration')->nullable();
             $table->string('VATRegisterationStatus')->default('false');
             $table->string('Legal_or_business_name');

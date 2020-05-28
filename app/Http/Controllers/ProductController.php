@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ProductResource;
 use App\Product;
+use App\seller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -30,9 +31,28 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+         $product = new Product();
+        $product -> productName = $request ->productName;
+        $product -> productModel = $request ->productModel;
+        $product -> productSKU = $request ->productSKU;
+        $product -> productBrand_id = $request ->productBrand_id;
+        $product -> productPrice = $request ->productPrice;
+        $product -> productSalePrice = $request ->productSalePrice;
+        $product -> ProductSpecification = $request ->ProductSpecification;
+        $product -> ProductManufacturerInfo = $request ->ProductManufacturerInfo;
+        $product -> ProductWarrantyInfo = $request ->ProductWarrantyInfo;
+        $product -> ProductUserManual = $request ->ProductUserManual;
+        $product -> productDescription = $request ->productDescription;
+        $product -> productColour = $request ->productColour;
+        $product -> category_id = $request ->category_id;
+        $product -> hasSecurePay = $request ->hasSecurePay;
+        $product -> isInsured = $request ->isInsured;
+        $product -> hasLogistics = $request ->hasLogistics;
+        $product -> seller_id = $request ->seller_id;
+        $product -> save();
+        return response(['message' =>'Product Uploaded succesfully', 'status' => 200, 'product' => $product], 200);
     }
 
     public function makeImageAndThumbnail($image)
@@ -41,6 +61,23 @@ class ProductController extends Controller
         $imagePath->save();
         return $imagePath;
     }
+
+    /**
+    *Upload image to product
+    *@param  \Illuminate\Http\Request  $request
+    *
+    */
+
+    public function storeImage(Request $request){
+        return $request -> all();
+    }
+
+
+    public function initProduct(Request $request){
+        $seller = seller::where('id', $request->sellerId)->first();
+        return $seller;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -49,38 +86,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $images = [];
-        // return $request->all();
-        for ($i = 0; $i < count( $request->images);) {
-            // 
-            $image = $request->images[$i]['path'];  // your base64 encoded
-            $image = str_replace('data:image/png;base64,', '', $image);
-            $image = str_replace(' ', '+', $image);
-            $type = explode(';', $image)[0];
-            $type = explode('/', $type)[1];
-            $imageName = md5(microtime()) . '.' .  $type;
-            Storage::disk('public')->put('seller/' . $imageName, $image);
-            $imagePath = 'storage/seller/'. $imageName;
-            // $newImage = $this->makeImageAndThumbnail(base64_decode($imageName));
-           array_push( $images, $imagePath);
-            $i++;
-        }
-        $product = new Product();
-        $product -> productName = $request ->productName;
-        $product -> productModel = $request ->productModel;
-        $product -> productBrand_id =1;
-        $product -> productSKU = $request -> productSKU;
-        $product -> productPrice = $request -> productPrice;
-        $product -> productSalePrice = $request -> productSalePrice;
-        $product -> prodSpecification = $request -> prodSpecification;
-        $product -> prodManufacturer = $request -> prodManufacturer;
-        $product -> productDescription = $request -> productDescription;
-        $product -> prodcolor = $request -> prodcolor;
-        $product -> images = json_encode($images);
-        $product -> category_id =1;
-        $product -> supplier_id = 1;
-        $product -> save();
-        return response('Product Uploaded succesfully', 200);
+
+      
     }
 
     /**
@@ -115,7 +122,22 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $images = [];
+        return $request->all();
+        for ($i = 0; $i < count( $request->images);) {
+            // 
+            $image = $request->images[$i]['path'];  // your base64 encoded
+            $image = str_replace('data:image/png;base64,', '', $image);
+            $image = str_replace(' ', '+', $image);
+            $type = explode(';', $image)[0];
+            $type = explode('/', $type)[1];
+            $imageName = md5(microtime()) . '.' .  $type;
+            Storage::disk('public')->put('seller/' . $imageName, $image);
+            $imagePath = 'storage/seller/'. $imageName;
+            // $newImage = $this->makeImageAndThumbnail(base64_decode($imageName));
+           array_push( $images, $imagePath);
+            $i++;
+        }
     }
 
     /**
