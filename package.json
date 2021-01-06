@@ -21,7 +21,7 @@
     },
     "dependencies": {
         "@websanova/vue-auth": "^2.21.16-beta",
-        "axios": "^0.19.2",
+        "axios": "^0.21.1",
         "bootstrap-vue": "^2.6.0",
         "es6-promise": "^4.2.8",
         "sweet-modal-vue": "^2.0.0",
